@@ -6,7 +6,7 @@ references:
     - https://github.com/GhostPack/Certify
 author: pH-T (Nextron Systems)
 date: 2023-04-17
-modified: 2023-04-25
+modified: 2024-11-04
 tags:
     - attack.discovery
     - attack.credential-access
@@ -34,7 +34,9 @@ detection:
             - ' /domain:'
             - ' /path:'
             - ' /ca:'
-    condition: selection_img or all of selection_cli_*
+    filter_img:
+        Description: 'Certify The Web - Certify Certificate Manager' # https://www.virustotal.com/gui/file/f5e4e0d7385e4898dfedfc3640db10b39be22738fd854be76eba6debcc544dd5/details
+    condition: ( selection_img and not filter_img ) or all of selection_cli_*
 falsepositives:
     - Unknown
 level: high
